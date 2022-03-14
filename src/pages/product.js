@@ -30,6 +30,7 @@ const Product = () => {
     }
 
     const addCategoryHandler = () => {
+
         ProductCtx.addCategory(catname);
         setcatname('');
         closeModal();

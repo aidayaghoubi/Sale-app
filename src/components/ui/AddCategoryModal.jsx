@@ -21,7 +21,7 @@ z-index:9999;
         bottom:0;
         left : 17%;
         border-radius: 20px 20px 0 0;
-        height: 200px;
+        height: 210px;
             & ._titile{
                 padding:15px 25px;
             }
@@ -29,10 +29,18 @@ z-index:9999;
     & .item__container{
         padding:15px 25px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         direction: rtl;
 
+            & .input__eror{
+                border: 2px solid red;
+                background-color: #ffe5e5;
+            }
+            & .eror_text{
+                color: #e61111;
+                font-size: 15px;
+            }
             & input{
                 height: 25px;
                 width: 183px;
@@ -74,18 +82,41 @@ const AddCategoryModal = ({ closeHandler , addCategory , setCatName , catName })
 
     const inputChangeHandler = ({ target : { value } }) => {
         setCatName(value);
+        if(catName.trim().length < 2){
+            setInputEror(true)
+        }else{
+            setInputEror(false)
+        }
     }
-
+    const [inputEror ,setInputEror ] = useState(false)
+    const addCategoryHandler = () => {
+        if(catName.trim().length > 2){
+            addCategory();
+            
+        }else {
+            setInputEror(true)
+            setCatName('')
+        }
+            
+    }
 
     return (
         <ModalLayout >
             <div  className="add_categry_wrraper">
             <p className="_titile">افزودن دسته بندی جدید</p>
                 <div className="item__container">
-            
-                    <input type='text' value={catName} placeholder="نام دسته بندی" onChange={inputChangeHandler}/>
+                <div>
+                    <input 
+                        className={inputEror ? "input__eror" : ''}
+                        type='text' 
+                        value={catName} 
+                        placeholder="نام دسته بندی" 
+                        onChange={inputChangeHandler}/>
+                        {inputEror && <p className="eror_text">نام دسته بندی باید حداقل دارای 3 حرف باشد</p>
+}
+                        </div>
                     <div className="btn_wrapper">
-                        <button className="__add" onClick={addCategory}>افزودن دسته بندی</button>
+                        <button className="__add" onClick={addCategoryHandler}>افزودن دسته بندی</button>
                         <button className="__cancel" onClick={closeHandler}>انصراف</button>
                     </div>
             
