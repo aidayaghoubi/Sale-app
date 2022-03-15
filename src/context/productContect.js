@@ -34,6 +34,7 @@ const ProductLIstPrivder = ({ children }) => {
 
     const addProduct = (item) => {
         setState(prev => prev.map(el => el.id === item.id ? {...el , product:[...el.product , {...item , id:Date.now()}]} : el))
+       
     }
 
     useEffect(()=>{

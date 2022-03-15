@@ -25,7 +25,7 @@ const ProductLIstPrivder = ({children}) => {
         setState(prev => prev.map(el => el.id === item.id ? { ...el , product:[...el.product , { ...item , id : Date.now() }] } : el ))
     }
 
-    console.log(state);
+   
 
     return <ProductList.Provider value={{ items : state , addCategory , addProduct}}>
 {children}

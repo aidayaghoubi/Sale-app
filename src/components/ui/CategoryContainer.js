@@ -63,7 +63,7 @@ const CateoryContaner = ({ product, categoryName, id }) => {
     const ProductCTX = useContext(ProductList);
 
     const productt = ProductCTX.items.filter(el => el.id === id);
-    console.log(productt[0].product);
+    
 
 
 
@@ -97,8 +97,8 @@ const CateoryContaner = ({ product, categoryName, id }) => {
 
             </StyledDIV>
 
-            {productt[0].product.map(el =>
-                <ProductInCategory
+            {productt[0].product.map((el , i) =>
+                <ProductInCategory key={i}
                     {...el}
                 />)
             }

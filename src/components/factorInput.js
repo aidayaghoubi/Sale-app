@@ -56,29 +56,27 @@ const FORM_Inoutes = [
 
 const FactorInputes = () => {
 
-    const [inputValues, setinputValues] = useState({
-        name: '',
-        addres: '',
-        phoneNumber: '',
-        number: ''
+    const [input, setinput] = useState({
+      
     })
 
-    const [inputEror, setinputEror] = useState({
-        name: false,
-        addres: false,
-        phoneNumber: false,
-        number: false
-    })
+    
 
-    function onInputChangeHAndler(e, key) {
-        setinputValues(prev => ({
+    function onInputChangeHAndler({target :{value}}, key, massage) {
+        setinput(prev =>({
             ...prev,
-            [key]: e.target.value
+            [key]:{
+                value,
+                haveError:value.trim() ? false : true ,
+                massage
+            }
+           
         }))
+
 
     }
     function onInputBlueHAndler() {
-        console.log(inputValues , 'lost blur')
+      
     }
     
     return (

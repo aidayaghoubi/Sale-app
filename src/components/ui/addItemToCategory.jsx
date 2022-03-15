@@ -40,8 +40,8 @@ z-index:9999;
                 overflow-y: auto;
 
                 & .input_Eror{
-                    border: 2px solid red;
-                    background-color: #ffe5e5;
+                    border: 2px solid #9292ff;
+                    background-color: #f8f8ff;
                 }
                 & input{
                     outline: none;
@@ -96,26 +96,39 @@ const Input_list = [
     {
         label:'نام محصول',
         key : 'name',
-        massage:'نام محصول باید حداقل دارای 3 حرف باشد'
+        massage:'نام محصول باید حداقل دارای 3 حرف باشد',
+        haveError:false
     },
     {
         label:'گونه محصول',
-        key : 'type'
+        key : 'type' , 
+        massage:'گونه محصول باید حداقل دارای 3 حرف باشد',
+        haveError:false
     },
     {
         label:'قیمت محصول',
-        key : 'price'
+        key : 'price' ,
+        massage:'مقداری ورودی صحیح نمی باشد',
+        haveError:false
     }
 ]
 
 const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
 
-    const [newItem , setnewItem] = useState('');
+    
     const ProductCTx = useContext(ProductList);
+    const [input , setInput] = useState({
 
-
-
-    const [input , setInput] = useState({})
+          name:{
+              haveError:true
+          },
+          type:{
+            haveError:true
+        },
+        price:{
+            haveError:true
+        }
+    })
 
     const inputChangeHandler = ({target :{ value }} , key , massage) => {
 
@@ -126,10 +139,10 @@ const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
                 haveError:value.trim() ? false : true ,
                 massage
             }
-            
+           
         }))
 
-
+        
 
 
 
@@ -145,9 +158,9 @@ const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
             }
         }
 
+       
         if(canCreate){
             const{name , type , price} = input;
-            
             ProductCTx.addProduct({
                 name : name.value ,
                  type:type.value,
@@ -155,13 +168,14 @@ const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
                  id : categoryId ,
             });
             closeHandler()
+            
         }
 
 
        
     }
 
-    console.log(input);
+    
 
     return <ModalLayout>
             <div  className="add_categry_wrraper">
@@ -170,9 +184,10 @@ const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
            
             {
             Input_list.map((el , i) => (
+                
                 <input 
                     type='text' 
-                    // className={inputStates[el.key] && "input_Eror"}
+                    className={!input[el.key].haveError ? "input_Eror" : ''}
                     placeholder={el.label} 
                     key={i} 
                     onChange={e => inputChangeHandler(e , el.key , el?.massage || "" )} 

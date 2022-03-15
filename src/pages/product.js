@@ -22,7 +22,7 @@ const Product = () => {
     }
     const addProductHandler = () => {
 
-        console.log('sds');
+       
         // ProductCtx.addProduct({
             
         // })
