@@ -33,7 +33,7 @@ return (
         <div className="inner_product_wrapper">
             <p>{name}</p>
             <p>{type}</p>
-            <p>{price}</p>
+            <p> {price} ریال</p>
         </div>
     </ProductWrapper>
 )

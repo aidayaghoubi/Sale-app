@@ -49,7 +49,7 @@ const SearchModal = ({ searchedItem , addingItem}) => {
 
     }, [searchedItem])
 
-   const itemShuoldAdd=(prop)=>{
+   const itemShuoldAdd= (prop) =>{
     addingItem(prop)
    }
 

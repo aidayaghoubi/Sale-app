@@ -90,6 +90,7 @@ const AddCategoryModal = ({ closeHandler , addCategory , setCatName , catName })
     }
     const [inputEror ,setInputEror ] = useState(false)
     const addCategoryHandler = () => {
+        
         if(catName.trim().length > 2){
             addCategory();
             

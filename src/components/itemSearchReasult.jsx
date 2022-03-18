@@ -29,19 +29,21 @@ const SearchedItem = styledComponents.div`
     }
 `
 
-const SearchedItemREsult = ({productName , onAddItem}) => {
+const SearchedItemREsult = ({ productName, onAddItem }) => {
 
 
-    function ItemClickHandler (){
-        onAddItem(productName)
+    function ItemClickHandler() {
+        console.log('ddededede')
+        onAddItem(productName);
+
     }
-    
-    return(<SearchedItem >
+    console.log('dede')
+    return (<SearchedItem >
         <div className="itemm" onClick={ItemClickHandler}>
-    <p>
-    {productName.name}
-    </p>
-    </div>
+            <p>
+                {productName.name}
+            </p>
+        </div>
     </SearchedItem>)
-} 
+}
 export default SearchedItemREsult;

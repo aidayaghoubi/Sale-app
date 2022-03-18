@@ -26,22 +26,42 @@ const ProductLIstPrivder = ({ children }) => {
             }
         ])
     }
+    const removeCategory = (props) => {
+        
+        setState(prev => prev.filter(el => el.id !== props.id))
 
+    }
     //item => object == name , id
     //prev => array of object
     // el is object == categoryname , product
     // product array of object
 
     const addProduct = (item) => {
-        setState(prev => prev.map(el => el.id === item.id ? {...el , product:[...el.product , {...item , id:Date.now()}]} : el))
+        setState(prev => 
+            prev.map(el => el.id === item.id ? 
+                {...el , product:
+                    [...el.product , {...item , id:Date.now()}]} : el))
        
     }
+
+    const changeCatName = (item) => {
+
+        setState(prev => 
+            prev.map(el => el.id === item.id ? 
+                {...el , categoryName:item.catName } : el))
+     }
 
     useEffect(()=>{
         localStorage.setItem(PRODUCT_STORAGE_KEY , state.length ? JSON.stringify(state.items) : '')
     } , [state])
    
-    return <ProductList.Provider value={{ items: state, addCategory, addProduct }}>
+    return <ProductList.Provider value={{
+         items: state,
+          addCategory, 
+          addProduct , 
+          changeCatName ,
+          removeCategory
+           }}>
         {children}
     </ProductList.Provider>
 }

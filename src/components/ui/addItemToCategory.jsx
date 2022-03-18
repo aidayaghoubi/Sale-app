@@ -186,7 +186,7 @@ const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
             Input_list.map((el , i) => (
                 
                 <input 
-                    type='text' 
+                    type={el.key === 'price' ? 'number' : 'text'}
                     className={!input[el.key].haveError ? "input_Eror" : ''}
                     placeholder={el.label} 
                     key={i} 

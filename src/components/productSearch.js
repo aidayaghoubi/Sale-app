@@ -40,7 +40,7 @@ const ProductSearch = ({addItem}) => {
     }
     const onInputBlurHandler = () => {
        
-     setshowSearch(true)
+     setshowSearch(false)
         
      
     }
@@ -49,6 +49,8 @@ const ProductSearch = ({addItem}) => {
     }
     const addItemToFac =(prop) =>{
         addItem(prop)
+        console.log(prop)
+        setshowSearch(false)
     }
 
     return (

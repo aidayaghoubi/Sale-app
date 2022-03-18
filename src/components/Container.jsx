@@ -1,6 +1,6 @@
-import styledComponents from "styled-components"
+import styled from "styled-components"
 
-const MainContainer = styledComponents.div`
+const MainContainer = styled.div`
 width: 100%;
 max-width: 1200px;
 margin: 0 auto;

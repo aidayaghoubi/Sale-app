@@ -9,6 +9,7 @@ import { ProductList } from "../context/productContect";
 import CategoryContainer from "../components/ui/CategoryContainer"
 
 const Product = () => {
+
     const [addClicked, setAddclicked] = useState(false)
     const [catname, setcatname] = useState('');
     const ProductCtx = useContext(ProductList)
@@ -21,12 +22,6 @@ const Product = () => {
         setAddclicked(false)
     }
     const addProductHandler = () => {
-
-       
-        // ProductCtx.addProduct({
-            
-        // })
-        // setAddclicked(false)
     }
 
     const addCategoryHandler = () => {

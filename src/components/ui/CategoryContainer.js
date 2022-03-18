@@ -20,10 +20,17 @@ const StyledDIV = styledComponents.div`
         justify-content: space-between;
         direction: rtl;
     }
+    & .name_cat_wraper{
+        position: relative;
+    }
         & p{
             font-size: 24px;
             font-weight: bold;
+        
             padding: 12px 37px;
+        }
+        & .input_change_name{
+            
         }
         & .btn_wraper{
 
@@ -60,19 +67,59 @@ const StyledDIV = styledComponents.div`
 const CateoryContaner = ({ product, categoryName, id }) => {
 
     const [modalShow, setmodalShow] = useState(false);
+    const [edit ,setEdit] = useState(false)
     const ProductCTX = useContext(ProductList);
+    const [catName,setCatName] = useState(categoryName)
 
     const productt = ProductCTX.items.filter(el => el.id === id);
     
 
+    function onRemoveBtnHandler () {
+        ProductCTX.removeCategory({categoryName , id})
+        setEdit(false)
+    }
+    function onEditNameBtnHandler () {
+       
+        setEdit(true)
+    }
 
+    function onInputChangeHandler ({target :{value}}){
+        setCatName(value)
+    }
 
+    // function onSaveNameChangeHandler (catName){
+    //     console.log(catName)
+    // }
+    const onSaveNameChangeHandler = () => {
+        if(catName === categoryName){
+
+        }else{
+
+            ProductCTX.changeCatName({catName , id});
+            setEdit(false)
+        }
+
+    }
+    const onCancelNameChangeHandler = () => {
+        setEdit(false)
+    }
     return (
         <Container>
             <StyledDIV>
                 <div className="inner_wrapper">
-                    <div>
-                        <p>{categoryName}</p>
+                    <div className="name_cat_wraper">
+                        <p className="category_title">{categoryName}</p>
+                        {edit && <div className="input_change_name"> 
+                            <input 
+                            type='text'
+                            value={catName}
+                            onChange={onInputChangeHandler}
+                            />
+                            <button onClick={onSaveNameChangeHandler}>ذخیره</button>
+                            <button onClick={onCancelNameChangeHandler}>انصراف</button>
+                             </div>}
+                        <button onClick={onRemoveBtnHandler}>حذف</button>
+                        <button onClick={onEditNameBtnHandler}>ویرایش</button>
                     </div>
                     <div className="btn_wraper">
                         <button onClick={setmodalShow}>
