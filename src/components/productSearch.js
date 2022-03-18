@@ -40,8 +40,7 @@ const ProductSearch = ({addItem}) => {
     }
     const onInputBlurHandler = () => {
        
-     setshowSearch(false)
-        
+          setshowSearch(true)
      
     }
     const onInputFocusHandler = () => {
@@ -50,7 +49,8 @@ const ProductSearch = ({addItem}) => {
     const addItemToFac =(prop) =>{
         addItem(prop)
         console.log(prop)
-        setshowSearch(false)
+        setshowSearch(false);
+        
     }
 
     return (

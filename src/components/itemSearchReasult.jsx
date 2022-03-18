@@ -32,8 +32,8 @@ const SearchedItem = styledComponents.div`
 const SearchedItemREsult = ({ productName, onAddItem }) => {
 
 
-    function ItemClickHandler() {
-        console.log('ddededede')
+    function ItemClickHandler() { 
+      
         onAddItem(productName);
 
     }

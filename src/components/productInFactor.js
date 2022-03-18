@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ProductStyled = styled.div`
@@ -24,9 +25,21 @@ width: 100%;
 
 const ProductInFactor = ({data , changePnum , setProductType ,deletProduct , changePprice , num}) => {
 
+     const [amout,setAmount]= useState(1)
 
-
-console.log(data)
+    const onRemoveItem = () => {
+        deletProduct({data , num})
+    }
+    const AmountInputHandler = ( {target :{value}})=>{
+        if(value >= 1){
+            setAmount(parseInt(value));
+        }
+       
+      console.log(amout , value ,' whist')
+    }
+    useEffect(()=>{
+        changePnum({num , amout})
+    },[amout])
 return (
     <ProductStyled>
         <div className="item_container">
@@ -40,13 +53,17 @@ return (
                 <input type='text' /> 
             </div>
             <div className="input_wraper amount">
-                <input type='text' /> 
+                <input 
+                type='number' 
+                value={amout}
+                onChange={AmountInputHandler}
+                /> 
             </div>
             <div className="item-Wraper">
-                <p> ریال{data.price} </p>
+                <p> ریال{data.totalPrice} </p>
             </div>
             <div className="item-Wraper">
-                <button>حذف</button>
+                <button onClick={onRemoveItem}>حذف</button>
                 <button>...</button>
             </div>
         </div>

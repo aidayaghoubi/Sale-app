@@ -12,22 +12,24 @@ const NewFactor = () => {
 
 
     function productThatSold(item) {
-        setselectedItems(prev => [...prev, item]);
-        console.log('de')
+        setselectedItems(prev => [...prev, { ...item, amount: 1, totalPrice :parseInt(item.price)}]);
+
     }
     function changeProductPrice() {
 
     }
-    function changeProductNumber() {
-
+    function changeProductNumber({num , amout}) {
+        console.log(amout)
+         setselectedItems(prev => prev.map( (el , i) => i === num ? {...el , amount:amout , totalPrice :el.price * amout } : el))
+      
     }
     function setProductType() {
 
     }
-    function deletProductFromFactor() {
-
+    const deletProductFromFactor = ({data , num}) => {
+        setselectedItems(prev => prev.filter( (el , i) => i !== num))
     }
-
+console.log(selectedItems)
     return <Container>
         <Title name="فاکتور" />
         <FactorInputes />
