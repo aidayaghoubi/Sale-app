@@ -4,32 +4,38 @@ import FactorInputes from "../components/factorInput";
 import { useState } from "react";
 import ProductSearch from "../components/productSearch";
 import ProductInFactor from "../components/productInFactor";
+import ProiorityFaactor from "../components/priorityFactor";
+import MoreINformationInFactor from "../components/moreInformFactor";
+import ItemWraper from "../components/ui/itemInFactorWrap";
 
 
 const NewFactor = () => {
 
-    const [selectedItems, setselectedItems] = useState([])
+    const [selectedItems, setselectedItems] = useState([]);
+    const [proierity ,setProierity] = useState(1)
 
 
     function productThatSold(item) {
-        setselectedItems(prev => [...prev, { ...item, amount: 1, totalPrice :parseInt(item.price)}]);
+        setselectedItems(prev => [...prev, { ...item, amount: 1, totalPrice: parseInt(item.price) }]);
 
     }
-    function changeProductPrice() {
+    function changeProductPrice({ num, price }) {
+       
+        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, price: price, totalPrice: price * el.amount } : el))
+    }
+    function changeProductNumber({ num, amout }) {
+       
+        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, amount: amout, totalPrice: el.price * amout } : el))
 
     }
-    function changeProductNumber({num , amout}) {
-        console.log(amout)
-         setselectedItems(prev => prev.map( (el , i) => i === num ? {...el , amount:amout , totalPrice :el.price * amout } : el))
-      
-    }
-    function setProductType() {
+    function setProductType({ num, value }) {
 
+        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, type: value } : el))
     }
-    const deletProductFromFactor = ({data , num}) => {
-        setselectedItems(prev => prev.filter( (el , i) => i !== num))
+    const deletProductFromFactor = ({ data, num }) => {
+        setselectedItems(prev => prev.filter((el, i) => i !== num))
     }
-console.log(selectedItems)
+    
     return <Container>
         <Title name="فاکتور" />
         <FactorInputes />
@@ -44,6 +50,11 @@ console.log(selectedItems)
             deletProduct={deletProductFromFactor}
             changePprice={changeProductPrice}
         />)}
+        <ItemWraper>
+            <MoreINformationInFactor />
+            <ProiorityFaactor proierity={setProierity}/>
+        </ItemWraper>
+
     </Container>
 }
 export default NewFactor
