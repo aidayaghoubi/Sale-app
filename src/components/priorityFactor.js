@@ -14,7 +14,7 @@ const ElemanWraper = styled.div`
     position: relative;
 
         & .priority_divider {
-            height: 92%;
+            height: 96%;
             position: absolute;
             display: block;
             top: 0;
@@ -28,7 +28,7 @@ const ElemanWraper = styled.div`
         & .proieriti_box{
             text-align: center;
             width: 20%;
-            height: 96px;
+            height: 150px;
             font-size:18px;
             display: flex;
             align-items: center;
@@ -114,7 +114,7 @@ const ProiorityFaactor = ({proierity}) => {
       
     }
 
-    return <ElemanWraper style={{ width: '42%', margin: ' 15px 49px' }}>
+    return <ElemanWraper style={{ width: '42%', margin: ' 0px 49px' }}>
         <p>اولویت فاکتور</p>
         <div className="eleman_wraper">
             <div className="priority_divider" style={{width:`${flexWidth}`}}>

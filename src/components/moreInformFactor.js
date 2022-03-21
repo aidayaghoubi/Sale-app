@@ -3,17 +3,37 @@ import styled from "styled-components";
 
 const ElemanWraper = styled.div`
 
-& .eleman_wraper{
+& p{
+    
+    font-size: 24px;
 
 }
-`
-const MoreINformationInFactor = () => {
 
+& textarea{
+    text-align: right;
+    width: 100%;
+    min-height: 8rem;
+    outline: none;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: silver;
+    border-image: initial;
+    padding: 0.5rem;
+    transition: all 0.3s ease 0s;
+}
+`
+const MoreINformationInFactor = ({extera}) => {
+    
+
+    const onChangeText = ({target :{value}}) => {
+        extera(value)
+    }
 
     return (
         <ElemanWraper style={{width:'45%'}}>
             <p>توضیحات اضافه</p>
-            <textarea />
+            <textarea onChange={(e) => onChangeText(e)}/>
         </ElemanWraper>
     )
 }
