@@ -6,10 +6,12 @@ import ProductSearch from "../components/productSearch";
 import ProductInFactor from "../components/productInFactor";
 import ProiorityFaactor from "../components/priorityFactor";
 import MoreINformationInFactor from "../components/moreInformFactor";
-import ItemWraper from "../components/ui/itemInFactorWrap";
+import ItemWrraper from "../components/ui/itemInFactorWrap";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FactorContext } from "../context/factorContext";
 import FactorContextProvider from "../context/factorContext";
+import {history} from 'react-router-dom'
 
 const SubmitButton = styled.div`
 display: flex;
@@ -29,45 +31,48 @@ margin: 0 77px;
 
 `
 
-const NewFactor = () => {
+const NewFactor = (props) => {
 
-    const [selectedItems, setselectedItems] = useState([]);
-    const [proierity, setProierity] = useState(1);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [priority, setProierity] = useState(1);
     const [customerDate, setCustomerDate] = useState({})
     const [moreInfo, setMoreInfo] = useState('');
     const FactorCtx = useContext(FactorContext)
 
     const disable = (customerDate.length === 0 || selectedItems.length === 0) ? true : false;
-   
+
 
     function productThatSold(item) {
-        setselectedItems(prev => [...prev, { ...item, amount: 1, totalPrice: parseInt(item.price) }]);
+        setSelectedItems(prev => [...prev, { ...item, amount: 1, totalPrice: parseInt(item.price) }]);
 
     }
     function changeProductPrice({ num, price }) {
 
-        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, price: price, totalPrice: price * el.amount } : el))
+        setSelectedItems(prev => prev.map((el, i) => i === num ? { ...el, price: price, totalPrice: price * el.amount } : el))
     }
     function changeProductNumber({ num, amout }) {
 
-        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, amount: amout, totalPrice: el.price * amout } : el))
+        setSelectedItems(prev => prev.map((el, i) => i === num ? { ...el, amount: amout, totalPrice: el.price * amout } : el))
 
     }
     function setProductType({ num, value }) {
 
-        setselectedItems(prev => prev.map((el, i) => i === num ? { ...el, type: value } : el))
+        setSelectedItems(prev => prev.map((el, i) => i === num ? { ...el, type: value } : el))
     }
     const deletProductFromFactor = ({ data, num }) => {
-        setselectedItems(prev => prev.filter((el, i) => i !== num))
+        setSelectedItems(prev => prev.filter((el, i) => i !== num))
     }
     const onSubmitFactorHandler = () => {
+
+        /* props.history.push('/dedde') */
+        console.log(props , 'new factor propss')
         FactorCtx.addFactor({
-            proierity,
+            priority: priority,
             selectedItems,
             customerDate,
-            moreInfo  
+            moreInfo
         });
-        setselectedItems([]);
+        setSelectedItems([]);
         setCustomerDate({});
         setMoreInfo('')
     }
@@ -77,7 +82,7 @@ const NewFactor = () => {
             <Title name="فاکتور" />
             <FactorInputes inputValue={setCustomerDate}
             //  resetINoutes = {}
-              />
+            />
             <ProductSearch
                 addItem={productThatSold} />
             {selectedItems.map((el, i) => <ProductInFactor
@@ -89,16 +94,20 @@ const NewFactor = () => {
                 deletProduct={deletProductFromFactor}
                 changePprice={changeProductPrice}
             />)}
-            <ItemWraper>
+            <ItemWrraper>
                 <MoreINformationInFactor extera={setMoreInfo} />
                 <ProiorityFaactor proierity={setProierity} />
-            </ItemWraper>
+            </ItemWrraper>
             <SubmitButton>
+
                 <button
                     onClick={onSubmitFactorHandler}
-                    disabled={disable} >ایجاد فرم </button>
+                    disabled={disable}
+                >ایجاد فرم
+                </button>
+                
             </SubmitButton>
         </FactorContextProvider>
-    </Container>
+    </Container >
 }
 export default NewFactor

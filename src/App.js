@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Routes } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import Home from "./pages/home";
 import Product from "./pages/product";
 import Setting from "./pages/setting";
+import { Routes } from "react-router-dom";
 import NewFactor from "./pages/new-factor";
 import Header from "./header/header";
 import ProductLIstPrivder from "./context/productContect";
 import FactorContextProvider from "./context/factorContext";
+import FactorPrint from "./pages/factor";
 
 
 function App() {
@@ -17,11 +18,11 @@ function App() {
       <ProductLIstPrivder>
         <FactorContextProvider>
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/new-factor" element={<NewFactor />} />
-            {/* <Route path="/new-factor/:id" component={<NewFactor />} /> */}
-            <Route path="/setting" element={<Setting />} />
+            <Route path="/home" element={<Home />} exact />
+            <Route path="/product" element={<Product />} exact />
+            <Route path="/new-factor" element={<NewFactor />} exact />
+            <Route path="/new-factor/:id" element={<FactorPrint />} exact />
+            <Route path="/setting" element={<Setting />} exact />
           </Routes>
         </FactorContextProvider>
       </ProductLIstPrivder>
