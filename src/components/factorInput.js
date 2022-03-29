@@ -74,7 +74,7 @@ const FactorInputes = ({ inputValue }) => {
     const [input, setinput] = useState({})
 
     function onInputChangeHAndler({ target: { value } }, key) {
-        setinput(prev => ({
+        inputValue(prev => ({
             ...prev,
             [key]: {
                 value,
@@ -83,15 +83,14 @@ const FactorInputes = ({ inputValue }) => {
         }))
     }
 
-    console.log(input)
 
-    useEffect(() => {
-        (input.addres?.haveError === false
-            && input.name?.haveError === false
-            && input.number?.haveError === false
-            && input.phoneNumber?.haveError === false) && inputValue(input)
+    // useEffect(() => {
+    //     (input.addres?.haveError === false
+    //         && input.name?.haveError === false
+    //         && input.number?.haveError === false
+    //         && input.phoneNumber?.haveError === false) && inputValue(input)
 
-    }, [input])
+    // }, [input])
 
     const resetInputse = () =>{
         setinput('')

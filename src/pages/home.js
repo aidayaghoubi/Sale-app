@@ -2,20 +2,24 @@ import Title from "../components/pageTitle"
 import Container from "../components/Container";
 import ItemWraper from "../components/ui/itemInFactorWrap";
 import FactorContextProvider from "../context/factorContext";
+import LastIncomeHandler from "../components/LastIncomeInHome";
+import LastFActor from "../components/LastFactorInHome";
+import { useContext } from "react";
 import { FactorContext } from "../context/factorContext";
-import { useContext, useEffect } from "react";
+
 
 const Home = () => {
 
-  const factorcTX = useContext(FactorContext)
-  console.log(factorcTX.factors , 'factor in home' )
+  const factorContext = useContext(FactorContext)
 
-
+  const factors = factorContext.factors;
+ 
   return <Container>
     <FactorContextProvider>
       <Title name="خانه" />
       <ItemWraper>
-
+        <LastFActor factors={factors} />
+        <LastIncomeHandler factors={factors}/>
       </ItemWraper>
     </FactorContextProvider>
   </Container>

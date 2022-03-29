@@ -37,7 +37,7 @@ const SearchedItemREsult = ({ productName, onAddItem }) => {
         onAddItem(productName);
 
     }
-    console.log('dede')
+  
     return (<SearchedItem >
         <div className="itemm" onClick={ItemClickHandler}>
             <p>

@@ -1,0 +1,103 @@
+import styledComponents from "styled-components"
+
+const WrapperStyled = styledComponents.div`
+
+    width:100%;
+    margin-right: 25px;
+    height: 350px; 
+    & ._title{
+        color: #4d4d4d;
+        font-size: 1.2rem;
+        text-align: right;
+    }
+    & .factor_container{
+        margin: 3rem 0;
+
+        & .factor{
+            display: flex;
+            justify-content: space-between;
+            direction: rtl;
+            padding: 0px 16px;
+            border-right: 5px solid;
+            border-color: #5d5ddb;
+            margin: 25px 0px;
+            align-items: center;
+
+            & button{
+                border: 2px solid #242468;
+                color: #242468;
+                cursor: pointer;
+                border-radius: 5px;
+                background-color: transparent;
+                /* padding: 3.2px 16px; */
+                height: 31px;
+                font-size: 16px;
+                font-weight: bold;
+                width: 61px;
+                position: relative;
+                -webkit-transition: 0.8s;
+                 overflow: hidden;
+
+                 & span{
+                    z-index: 999;
+                    position: absolute;
+                    left: 18%;
+                    -webkit-transition: 0.8s;
+                    top: 7px;
+                 }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    width: 110%;
+                    height: 193%;
+                    left: 0;
+                    top: -54px;
+                    background-color: #5d5ddb;
+                    -webkit-transition: 0.8s;
+                    transition: 1s;
+                    border-radius: 11px;
+                }
+                &:hover::after{
+                    top: -8px;
+                }
+                &:hover span{
+                    color: #fff
+                }
+            }
+        }
+    }
+`
+
+const LastFActor = ({factors}) => {
+
+    
+    const items = factors.map((el , i ) =>
+        <div className="factor" key={i}>
+        <p>{el?.customerDate?.name?.value}</p>
+        <p>شناسه فاکتور</p>
+        <p> اولویت : {el.priority}</p>
+        <button><span>مشاهده</span></button>
+    </div>
+        )
+   
+    return (
+        <WrapperStyled>
+            <p className="_title">
+                اخرین فاکتور
+            </p>
+            <div className="factor_container">
+                {/* <div className="factor">
+                    <p>نام فاکتور</p>
+                    <p>شناسه فاکتور</p>
+                    <p>اولویت</p>
+                    <button><span>مشاهده</span></button>
+                </div> */}
+                {
+                    items
+                }
+            </div>
+        </WrapperStyled>
+    )
+}
+export default LastFActor

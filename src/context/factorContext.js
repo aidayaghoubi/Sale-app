@@ -18,8 +18,6 @@ const FactorContextProvider = ({ children }) => {
         ])
     }
 
-    console.log(state, 'in every load')
-
     return <FactorContext.Provider value={{
         factors: state,
         addFactor

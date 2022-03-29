@@ -1,7 +1,7 @@
 
-const FactorPrint = ({params}) => {
+const FactorPrint = (props) => {
 
-    console.log(params)
+    console.log(props)
 
     return <div>
         <h1>helo my name is aida</h1>

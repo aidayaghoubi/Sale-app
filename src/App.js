@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Router } from "react-router-dom";
+import { Route, Router, Redirect } from "react-router-dom";
 import Home from "./pages/home";
 import Product from "./pages/product";
 import Setting from "./pages/setting";
@@ -18,6 +18,9 @@ function App() {
       <ProductLIstPrivder>
         <FactorContextProvider>
           <Routes>
+            {/* <Route path='/' exact>
+                <Redirect to='/home' />
+              </Route> */}
             <Route path="/home" element={<Home />} exact />
             <Route path="/product" element={<Product />} exact />
             <Route path="/new-factor" element={<NewFactor />} exact />

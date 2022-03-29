@@ -37,9 +37,11 @@ const NewFactor = (props) => {
     const [priority, setProierity] = useState(1);
     const [customerDate, setCustomerDate] = useState({})
     const [moreInfo, setMoreInfo] = useState('');
+    const [totalFactorPrice ,settotalFactorPrice ] = useState(0)
     const FactorCtx = useContext(FactorContext)
 
-    const disable = (customerDate.length === 0 || selectedItems.length === 0) ? true : false;
+    const disable = 
+    (customerDate.length === 0 || selectedItems.length === 0) ? true : false;
 
 
     function productThatSold(item) {
@@ -65,7 +67,7 @@ const NewFactor = (props) => {
     const onSubmitFactorHandler = () => {
 
         /* props.history.push('/dedde') */
-        console.log(props , 'new factor propss')
+
         FactorCtx.addFactor({
             priority: priority,
             selectedItems,
