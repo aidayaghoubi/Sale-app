@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Router, Redirect } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 import Home from "./pages/home";
 import Product from "./pages/product";
 import Setting from "./pages/setting";
@@ -21,6 +21,11 @@ function App() {
             {/* <Route path='/' exact>
                 <Redirect to='/home' />
               </Route> */}
+            {/* <Route render={() => <Navigate to="/home" />} /> */}
+            <Route
+              path="*"
+              element={<Navigate to="/home" replace />}
+            />
             <Route path="/home" element={<Home />} exact />
             <Route path="/product" element={<Product />} exact />
             <Route path="/new-factor" element={<NewFactor />} exact />

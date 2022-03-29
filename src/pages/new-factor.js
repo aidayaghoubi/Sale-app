@@ -10,6 +10,7 @@ import ItemWrraper from "../components/ui/itemInFactorWrap";
 import styled from "styled-components";
 import { FactorContext } from "../context/factorContext";
 import FactorContextProvider from "../context/factorContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -38,10 +39,11 @@ const NewFactor = (props) => {
     const [customerDate, setCustomerDate] = useState({})
     const [moreInfo, setMoreInfo] = useState('');
     const [totalFactorPrice ,settotalFactorPrice ] = useState(0)
-    const FactorCtx = useContext(FactorContext)
+    const FactorCtx = useContext(FactorContext);
 
-    const disable = 
-    (customerDate.length === 0 || selectedItems.length === 0) ? true : false;
+    let navigate = useNavigate()
+
+    const disable = (customerDate.length === 0 || selectedItems.length === 0) ? true : false;
 
 
     function productThatSold(item) {
@@ -67,6 +69,8 @@ const NewFactor = (props) => {
     const onSubmitFactorHandler = () => {
 
         /* props.history.push('/dedde') */
+        const shenase = Math.round(Math.random(0 ,1) * 99)
+        console.log(shenase)
 
         FactorCtx.addFactor({
             priority: priority,
@@ -76,7 +80,8 @@ const NewFactor = (props) => {
         });
         setSelectedItems([]);
         setCustomerDate({});
-        setMoreInfo('')
+        setMoreInfo('');
+        // navigate('/home')
     }
 
     return <Container>
