@@ -8,10 +8,10 @@ import ProiorityFaactor from "../components/priorityFactor";
 import MoreINformationInFactor from "../components/moreInformFactor";
 import ItemWrraper from "../components/ui/itemInFactorWrap";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { FactorContext } from "../context/factorContext";
 import FactorContextProvider from "../context/factorContext";
-import {history} from 'react-router-dom'
+
+
 
 const SubmitButton = styled.div`
 display: flex;

@@ -24,19 +24,18 @@ const WrapperStyled = styledComponents.div`
             align-items: center;
 
             & button{
-                border: 2px solid #242468;
-                color: #242468;
+                border: 2px solid #5d5ddb;
+                color: #5d5ddb;
                 cursor: pointer;
                 border-radius: 5px;
                 background-color: transparent;
-                /* padding: 3.2px 16px; */
-                height: 31px;
+                height: 37px;
                 font-size: 16px;
                 font-weight: bold;
-                width: 61px;
+                width: 68px;
                 position: relative;
                 -webkit-transition: 0.8s;
-                 overflow: hidden;
+                overflow: hidden;
 
                  & span{
                     z-index: 999;
@@ -52,7 +51,7 @@ const WrapperStyled = styledComponents.div`
                     width: 110%;
                     height: 193%;
                     left: 0;
-                    top: -54px;
+                    top: -65px;
                     background-color: #5d5ddb;
                     -webkit-transition: 0.8s;
                     transition: 1s;
