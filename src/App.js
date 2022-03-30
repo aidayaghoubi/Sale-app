@@ -18,19 +18,30 @@ function App() {
       <ProductLIstPrivder>
         <FactorContextProvider>
           <Routes>
-            {/* <Route path='/' exact>
-                <Redirect to='/home' />
-              </Route> */}
-            {/* <Route render={() => <Navigate to="/home" />} /> */}
             <Route
               path="*"
               element={<Navigate to="/home" replace />}
             />
-            <Route path="/home" element={<Home />} exact />
-            <Route path="/product" element={<Product />} exact />
-            <Route path="/new-factor" element={<NewFactor />} exact />
-            <Route path="/new-factor/:id" element={<FactorPrint />} exact />
-            <Route path="/setting" element={<Setting />} exact />
+            <Route
+              path="/home"
+              element={<Home />}
+              exact />
+            <Route
+              path="/product"
+              element={<Product />}
+              exact />
+            <Route
+              path="/new-factor"
+              element={<NewFactor />}
+              exact />
+            <Route 
+              path="/new-factor/:id" 
+              element={<FactorPrint />} 
+              exact />
+            <Route 
+              path="/setting" 
+              element={<Setting />} 
+              exact />
           </Routes>
         </FactorContextProvider>
       </ProductLIstPrivder>

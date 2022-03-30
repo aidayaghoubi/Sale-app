@@ -1,4 +1,5 @@
 import styledComponents from "styled-components"
+import { useNavigate } from "react-router-dom";
 
 const WrapperStyled = styledComponents.div`
 
@@ -68,30 +69,29 @@ const WrapperStyled = styledComponents.div`
     }
 `
 
-const LastFActor = ({factors}) => {
+const LastFActor = ({ factors }) => {
+    let navigate = useNavigate()
 
-    
-    const items = factors.map((el , i ) =>
+    const onShowFactor = (props) => {
+        console.log(props);
+        navigate(`/new-factor/${props}`)
+    }
+
+    const items = factors.map((el, i) =>
         <div className="factor" key={i}>
-        <p>{el?.customerDate?.name?.value}</p>
-        <p>شناسه فاکتور</p>
-        <p> اولویت : {el.priority}</p>
-        <button><span>مشاهده</span></button>
-    </div>
-        )
-   
+            <p>{el?.customerDate?.name?.value}</p>
+            <p>شناسه فاکتور : {el.shenase}</p>
+            <p> اولویت : {el.priority}</p>
+            <button onClick={()=>onShowFactor(el.shenase)}><span>مشاهده</span></button>
+        </div>
+    )
+
     return (
         <WrapperStyled>
             <p className="_title">
                 اخرین فاکتور
             </p>
             <div className="factor_container">
-                {/* <div className="factor">
-                    <p>نام فاکتور</p>
-                    <p>شناسه فاکتور</p>
-                    <p>اولویت</p>
-                    <button><span>مشاهده</span></button>
-                </div> */}
                 {
                     items
                 }

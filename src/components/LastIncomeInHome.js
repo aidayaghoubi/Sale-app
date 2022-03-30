@@ -49,9 +49,9 @@ const WrapperStyled = styledComponents.div`
     // (acc , curr )=> acc + curr.selectedItems[0].totalPrice
 const LastIncomeHandler = ({ factors }) => {
 
-    console.log(factors , 'incone')
+    
     const price = factors.map(el=> el.selectedItems )
-    console.log(price , 'incone')
+   
     return (
         <WrapperStyled>
             <p className="_title">

@@ -69,21 +69,21 @@ const NewFactor = (props) => {
     const onSubmitFactorHandler = () => {
 
         /* props.history.push('/dedde') */
-        const shenase = Math.round(Math.random(0 ,1) * 99)
-        console.log(shenase)
+        const shenase = Date.now();
 
         FactorCtx.addFactor({
             priority: priority,
             selectedItems,
             customerDate,
-            moreInfo
+            moreInfo,
+            shenase
         });
         setSelectedItems([]);
         setCustomerDate({});
         setMoreInfo('');
-        // navigate('/home')
+         navigate(`/new-factor/${shenase}`)
     }
-
+    
     return <Container>
         <FactorContextProvider>
             <Title name="فاکتور" />
