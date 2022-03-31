@@ -123,6 +123,8 @@ const NewFactor = () => {
                     onChange={setSelectedDayRange}
                     shouldHighlightWeekends
                     locale="fa"
+                    colorPrimary="#5e5ec3" 
+                    colorPrimaryLight="#eaeaff"
                 />
             </CalenderWraper>
             <ItemWrraper>
