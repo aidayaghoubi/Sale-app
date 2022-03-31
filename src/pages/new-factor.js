@@ -11,6 +11,9 @@ import styled from "styled-components";
 import { FactorContext } from "../context/factorContext";
 import FactorContextProvider from "../context/factorContext";
 import { useNavigate } from "react-router-dom";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import { Calendar } from "react-modern-calendar-datepicker";
+import styledComponents from "styled-components";
 
 
 
@@ -30,16 +33,29 @@ margin: 0 77px;
     font-size: 16px;
     cursor:pointer;
 
-`
+`;
+const CalenderWraper = styledComponents.div`
 
-const NewFactor = (props) => {
+    width: 34%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+
+
+`
+const NewFactor = () => {
 
     const [selectedItems, setSelectedItems] = useState([]);
     const [priority, setProierity] = useState(1);
     const [customerDate, setCustomerDate] = useState({})
     const [moreInfo, setMoreInfo] = useState('');
-    const [totalFactorPrice ,settotalFactorPrice ] = useState(0)
+    const [totalFactorPrice, settotalFactorPrice] = useState(0)
     const FactorCtx = useContext(FactorContext);
+    const [selectedDayRange, setSelectedDayRange] = useState({
+        from: null,
+        to: null
+    });
 
     let navigate = useNavigate()
 
@@ -81,14 +97,14 @@ const NewFactor = (props) => {
         setSelectedItems([]);
         setCustomerDate({});
         setMoreInfo('');
-         navigate(`/new-factor/${shenase}`)
+        navigate(`/new-factor/${shenase}`)
     }
-    
+    console.log(selectedDayRange)
+
     return <Container>
         <FactorContextProvider>
             <Title name="فاکتور" />
             <FactorInputes inputValue={setCustomerDate}
-            //  resetINoutes = {}
             />
             <ProductSearch
                 addItem={productThatSold} />
@@ -101,6 +117,14 @@ const NewFactor = (props) => {
                 deletProduct={deletProductFromFactor}
                 changePprice={changeProductPrice}
             />)}
+            <CalenderWraper>
+                <Calendar
+                    value={selectedDayRange}
+                    onChange={setSelectedDayRange}
+                    shouldHighlightWeekends
+                    locale="fa"
+                />
+            </CalenderWraper>
             <ItemWrraper>
                 <MoreINformationInFactor extera={setMoreInfo} />
                 <ProiorityFaactor proierity={setProierity} />
@@ -112,7 +136,7 @@ const NewFactor = (props) => {
                     disabled={disable}
                 >ایجاد فرم
                 </button>
-                
+
             </SubmitButton>
         </FactorContextProvider>
     </Container >

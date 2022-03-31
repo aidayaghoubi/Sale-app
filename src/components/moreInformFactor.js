@@ -11,7 +11,7 @@ const ElemanWraper = styled.div`
 
 & textarea{
     text-align: right;
-    width: 100%;
+    width: 87%;
     min-height: 8rem;
     outline: none;
     border-radius: 5px;
