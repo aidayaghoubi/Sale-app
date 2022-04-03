@@ -121,8 +121,8 @@ const CateoryContaner = ({ product, categoryName, id }) => {
     const ProductCTX = useContext(ProductList);
     const [catName, setCatName] = useState(categoryName)
 
-    const productt = ProductCTX.items.filter(el => el.id === id);
-
+    const productt = ProductCTX?.items?.filter(el => el.id === id);
+    console.log(ProductCTX)
 
     function onRemoveBtnHandler() {
         ProductCTX.removeCategory({ categoryName, id })
@@ -160,38 +160,38 @@ const CateoryContaner = ({ product, categoryName, id }) => {
                     <div className="name_cat_wraper">
                         <p className="category_title">{categoryName}</p>
                         {
-                        edit && <div className="input_change_name">
-                            <input
-                                type='text'
-                                value={catName}
-                                onChange={onInputChangeHandler}
-                            />
-                            <button onClick={onCancelNameChangeHandler}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                                    <g id="Group_5" data-name="Group 5" transform="translate(0 -0.382)">
-                                        <rect id="Rectangle_3" data-name="Rectangle 3" width="15" height="15" transform="translate(0 0.382)" fill="none" />
-                                        <g id="tick" transform="translate(2.04 2.04)">
-                                            <g id="Group_3" data-name="Group 3" transform="translate(0 0)">
-                                                <path id="Path_1" data-name="Path 1" d="M17.372,32.745l11.3,11.3m0-11.3-11.3,11.3" transform="translate(-17.372 -32.745)" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
+                            edit && <div className="input_change_name">
+                                <input
+                                    type='text'
+                                    value={catName}
+                                    onChange={onInputChangeHandler}
+                                />
+                                <button onClick={onCancelNameChangeHandler}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                        <g id="Group_5" data-name="Group 5" transform="translate(0 -0.382)">
+                                            <rect id="Rectangle_3" data-name="Rectangle 3" width="15" height="15" transform="translate(0 0.382)" fill="none" />
+                                            <g id="tick" transform="translate(2.04 2.04)">
+                                                <g id="Group_3" data-name="Group 3" transform="translate(0 0)">
+                                                    <path id="Path_1" data-name="Path 1" d="M17.372,32.745l11.3,11.3m0-11.3-11.3,11.3" transform="translate(-17.372 -32.745)" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
+                                                </g>
                                             </g>
                                         </g>
-                                    </g>
-                                </svg>
-                            </button>
-                            <button onClick={onSaveNameChangeHandler}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.416" height="15" viewBox="0 0 15.416 15">
-                                    <g id="Group_4" data-name="Group 4" transform="translate(0.017 -0.382)">
-                                        <rect id="Rectangle_4" data-name="Rectangle 4" width="15" height="15" transform="translate(0.311 0.382)" fill="none" />
-                                        <g id="tick" transform="translate(1.397 3.378)">
-                                            <g id="Group_3" data-name="Group 3" transform="translate(0 0)">
-                                                <path id="Path_1" data-name="Path 1" d="M14.137,6.667l3.96,3.96L26.724,2" transform="translate(-14.137 -2)" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
+                                    </svg>
+                                </button>
+                                <button onClick={onSaveNameChangeHandler}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.416" height="15" viewBox="0 0 15.416 15">
+                                        <g id="Group_4" data-name="Group 4" transform="translate(0.017 -0.382)">
+                                            <rect id="Rectangle_4" data-name="Rectangle 4" width="15" height="15" transform="translate(0.311 0.382)" fill="none" />
+                                            <g id="tick" transform="translate(1.397 3.378)">
+                                                <g id="Group_3" data-name="Group 3" transform="translate(0 0)">
+                                                    <path id="Path_1" data-name="Path 1" d="M14.137,6.667l3.96,3.96L26.724,2" transform="translate(-14.137 -2)" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
+                                                </g>
                                             </g>
                                         </g>
-                                    </g>
-                                </svg>
+                                    </svg>
 
-                            </button>
-                        </div>
+                                </button>
+                            </div>
                         }
                         <button onClick={onEditNameBtnHandler} className="control_btn" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
@@ -222,7 +222,7 @@ const CateoryContaner = ({ product, categoryName, id }) => {
                     />}
                 </div>
                 {
-                    (productt[0].product.length !== 0) &&
+                    (productt[0]?.product?.length !== 0) &&
                     <div className="inner_product_wrapper">
                         <p>نام</p>
                         <p>گونه</p>
@@ -233,7 +233,7 @@ const CateoryContaner = ({ product, categoryName, id }) => {
 
             </StyledDIV>
 
-            {productt[0].product.map((el, i) =>
+            {productt[0]?.product?.map((el, i) =>
                 <ProductInCategory key={i}
                     {...el}
                 />)

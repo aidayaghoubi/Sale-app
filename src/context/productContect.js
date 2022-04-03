@@ -14,7 +14,12 @@ const ProductLIstPrivder = ({ children }) => {
     //     ]
     // })
 
-    const [state, setState]= useState([])
+    //    const [state, setState]= useState([]);
+    const [state , setState] = useState(()=>{
+        const productInLocal = localStorage.getItem(PRODUCT_STORAGE_KEY);
+        return productInLocal ? JSON.parse(productInLocal) : []
+       
+    })
 
     const addCategory = (categoryName = "") => {
         setState(prev => [
@@ -52,8 +57,10 @@ const ProductLIstPrivder = ({ children }) => {
      }
 
     useEffect(()=>{
-        localStorage.setItem(PRODUCT_STORAGE_KEY , state.length ? JSON.stringify(state.items) : '')
-    } , [state])
+        localStorage.setItem(PRODUCT_STORAGE_KEY , state.length ? JSON.stringify(state) : '')
+    } , [state]);
+
+    console.log(state)
    
     return <ProductList.Provider value={{
          items: state,
