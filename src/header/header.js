@@ -11,7 +11,7 @@ z-index: 2;
 top: 0;
 border-radius: 0px 15px 15px 0;
 width: 8%;
-background: #fff;
+background: trasparent;
 display: -webkit-box;
 display: -webkit-flex;
 display: -ms-flexbox;
