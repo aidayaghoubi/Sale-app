@@ -11,6 +11,8 @@ import FactorContextProvider from "./context/factorContext";
 import FactorPrint from "./pages/factor";
 
 
+
+
 function App() {
   return (
     <Fragment>
