@@ -14,9 +14,12 @@ import FactorPrint from "./pages/factor";
 
 
 function App() {
+
+
+
   return (
     <Fragment>
-      <Header />
+      <Header/>
       <ProductLIstPrivder>
         <FactorContextProvider>
           <Routes>
@@ -26,7 +29,7 @@ function App() {
             />
             <Route
               path="/home"
-              element={<Home />}
+              element={<Home className='home'/>}
               exact />
             <Route
               path="/product"

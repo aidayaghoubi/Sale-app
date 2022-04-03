@@ -78,7 +78,7 @@ z-index:9999;
 
 `
 
-const AddCategoryModal = ({ closeHandler , addCategory , setCatName , catName }) => {
+const AddCategoryModal = ({ closeHandler , addCategory , setCatName , catName , modalHeight}) => {
 
     const inputChangeHandler = ({ target : { value } }) => {
         setCatName(value);
@@ -100,9 +100,10 @@ const AddCategoryModal = ({ closeHandler , addCategory , setCatName , catName })
         }
             
     }
+    console.log(modalHeight)
 
     return (
-        <ModalLayout >
+        <ModalLayout style={{top:`${modalHeight}px`}}>
             <div  className="add_categry_wrraper">
             <p className="_titile">افزودن دسته بندی جدید</p>
                 <div className="item__container">

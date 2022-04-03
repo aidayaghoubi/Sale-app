@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styledComponents from "styled-components";
 
@@ -43,7 +43,7 @@ overflow: hidden;
     display: inline-block;
     font-size: 25px;
     text-transform: uppercase;
-    padding: 2rem 0;
+    padding: 1rem 0;
     color: #fff;
     transition: all 0.5s ease-in-out;
     font-weight: 300;
@@ -73,7 +73,7 @@ overflow: hidden;
             display: inline-block;
             font-size:28px;
             text-transform: uppercase;
-            padding: 2rem 0;
+            padding: 1rem 0;
             transition: all 0.5s ease-in-out;
             font-weight: 300;
             &:hover{
@@ -87,7 +87,7 @@ overflow: hidden;
     }
     .nav{
         transform: translateX(-300%);
-        transition: all 0.5s ease-in-out;
+        transition: .3s cubic-bezier(.4,0,.2,1);
     }
 
     & .menu-btn{
@@ -131,7 +131,7 @@ overflow: hidden;
                
             }
             &.open{
-                transform: rotate(720deg);
+                transform: rotate(180deg);
                 transition: all 0.5s ease-in-out;
                 background: transparent;
         
@@ -151,17 +151,22 @@ overflow: hidden;
     
 `
 
+
 const Header = () => {
 
-    const [menuShow, setmenuShow] = useState(false)
+    
+
+    const [menuShow, setmenuShow] = useState(false);
 
     const onShowMenuHandler = () => {
-        setmenuShow(!menuShow)
+        setmenuShow(!menuShow);
+
     }
 
     const onLInkHandler = () => {
         setmenuShow(!menuShow)
     }
+
 
     return <Header1>
         <div className="menu-btn" onClick={onShowMenuHandler}>

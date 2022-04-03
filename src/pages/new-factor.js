@@ -108,6 +108,17 @@ const NewFactor = () => {
             />
             <ProductSearch
                 addItem={productThatSold} />
+            <CalenderWraper>
+                <Calendar
+                    value={selectedDayRange}
+                    onChange={setSelectedDayRange}
+                    shouldHighlightWeekends
+                    locale="fa"
+                    colorPrimary="#5e5ec3"
+                    colorPrimaryLight="#eaeaff"
+                />
+            </CalenderWraper>
+
             {selectedItems.map((el, i) => <ProductInFactor
                 key={i}
                 data={el}
@@ -117,16 +128,6 @@ const NewFactor = () => {
                 deletProduct={deletProductFromFactor}
                 changePprice={changeProductPrice}
             />)}
-            <CalenderWraper>
-                <Calendar
-                    value={selectedDayRange}
-                    onChange={setSelectedDayRange}
-                    shouldHighlightWeekends
-                    locale="fa"
-                    colorPrimary="#5e5ec3" 
-                    colorPrimaryLight="#eaeaff"
-                />
-            </CalenderWraper>
             <ItemWrraper>
                 <MoreINformationInFactor extera={setMoreInfo} />
                 <ProiorityFaactor proierity={setProierity} />

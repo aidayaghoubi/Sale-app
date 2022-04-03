@@ -114,15 +114,16 @@ const StyledDIV = styledComponents.div`
 }
 `
 
-const CateoryContaner = ({ product, categoryName, id }) => {
+const CateoryContaner = ({ product, categoryName, id  }) => {
 
     const [modalShow, setmodalShow] = useState(false);
     const [edit, setEdit] = useState(false)
     const ProductCTX = useContext(ProductList);
     const [catName, setCatName] = useState(categoryName)
+ 
 
     const productt = ProductCTX?.items?.filter(el => el.id === id);
-    console.log(ProductCTX)
+    const body = document.querySelector('body');
 
     function onRemoveBtnHandler() {
         ProductCTX.removeCategory({ categoryName, id })
@@ -141,6 +142,7 @@ const CateoryContaner = ({ product, categoryName, id }) => {
     //     console.log(catName)
     // }
     const onSaveNameChangeHandler = () => {
+       
         if (catName === categoryName) {
 
         } else {
@@ -151,7 +153,13 @@ const CateoryContaner = ({ product, categoryName, id }) => {
 
     }
     const onCancelNameChangeHandler = () => {
-        setEdit(false)
+        setEdit(false);
+        body.style.overflow = 'auto'
+    }
+    const onAddPro = () => {
+        setmodalShow(true);
+        body.style.overflow = 'hidden'
+
     }
     return (
         <Container>
@@ -211,7 +219,7 @@ const CateoryContaner = ({ product, categoryName, id }) => {
                         </button>
                     </div>
                     <div className="btn_wraper">
-                        <button onClick={setmodalShow}>
+                        <button onClick={onAddPro}>
                             محصول جدید
                         </button>
                     </div>

@@ -60,7 +60,7 @@ const ProductLIstPrivder = ({ children }) => {
         localStorage.setItem(PRODUCT_STORAGE_KEY , state.length ? JSON.stringify(state) : '')
     } , [state]);
 
-    console.log(state)
+  
    
     return <ProductList.Provider value={{
          items: state,

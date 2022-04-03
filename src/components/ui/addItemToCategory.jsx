@@ -1,4 +1,4 @@
-import { useState , useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import styledComponents from "styled-components";
 import { ProductList } from "../../context/productContect";
 
@@ -94,114 +94,121 @@ z-index:9999;
 
 const Input_list = [
     {
-        label:'نام محصول',
-        key : 'name',
-        massage:'نام محصول باید حداقل دارای 3 حرف باشد',
-        haveError:false
+        label: 'نام محصول',
+        key: 'name',
+        massage: 'نام محصول باید حداقل دارای 3 حرف باشد',
+        haveError: false
     },
     {
-        label:'گونه محصول',
-        key : 'type' , 
-        massage:'گونه محصول باید حداقل دارای 3 حرف باشد',
-        haveError:false
+        label: 'گونه محصول',
+        key: 'type',
+        massage: 'گونه محصول باید حداقل دارای 3 حرف باشد',
+        haveError: false
     },
     {
-        label:'قیمت محصول',
-        key : 'price' ,
-        massage:'مقداری ورودی صحیح نمی باشد',
-        haveError:false
+        label: 'قیمت محصول',
+        key: 'price',
+        massage: 'مقداری ورودی صحیح نمی باشد',
+        haveError: false
     }
 ]
 
-const AddItemToCategoryModal = ({ closeHandler , categoryId }) => {
+const AddItemToCategoryModal = ({ closeHandler, categoryId }) => {
 
+    const height = document.querySelector('body').scrollHeight;
+    const [modalHeight, setModalHeight] = useState(0)
+    const body = document.querySelector('body');
+    const item = (height - window.innerHeight) + 40;
     
     const ProductCTx = useContext(ProductList);
-    const [input , setInput] = useState({
+    const [input, setInput] = useState({
 
-          name:{
-              haveError:true
-          },
-          type:{
-            haveError:true
+        name: {
+            haveError: true
         },
-        price:{
-            haveError:true
+        type: {
+            haveError: true
+        },
+        price: {
+            haveError: true
         }
     })
 
-    const inputChangeHandler = ({target :{ value }} , key , massage) => {
+    const inputChangeHandler = ({ target: { value } }, key, massage) => {
 
-        setInput(prev =>({
+
+        setInput(prev => ({
             ...prev,
-            [key]:{
+            [key]: {
                 value,
-                haveError:value.trim() ? false : true ,
+                haveError: value.trim() ? false : true,
                 massage
             }
-           
         }))
-
-        
-
-
-
     }
 
     const addItemToCat = () => {
 
         let canCreate = true;
 
-        for(const property in input){
-            if(input[property].haveError){
+        for (const property in input) {
+            if (input[property].haveError) {
                 canCreate = false
             }
         }
 
-       
-        if(canCreate){
-            const{name , type , price} = input;
+
+        if (canCreate) {
+            body.style.overflow = 'auto';
+            const { name, type, price } = input;
             ProductCTx.addProduct({
-                name : name.value ,
-                 type:type.value,
-                 price:price.value,
-                 id : categoryId ,
+                name: name.value,
+                type: type.value,
+                price: price.value,
+                id: categoryId,
             });
             closeHandler()
-            
         }
-
-
-       
     }
 
-    
+    const onClose = () => {
+        closeHandler();
+        body.style.overflow = 'auto';
+    }
 
-    return <ModalLayout>
-            <div  className="add_categry_wrraper">
+    useEffect(()=>{
+        if(item > 0){
+            setModalHeight(item)
+        }
+    } , [item])
+    console.log(modalHeight, height, item)
+    return <ModalLayout
+    style={{top:0}}
+    >
+        <div className="add_categry_wrraper">
             <p className="_titile">افزودن محصول جدید</p>
             <div className="input_wrapper">
-           
-            {
-            Input_list.map((el , i) => (
-                
-                <input 
-                    type={el.key === 'price' ? 'number' : 'text'}
-                    className={!input[el.key].haveError ? "input_Eror" : ''}
-                    placeholder={el.label} 
-                    key={i} 
-                    onChange={e => inputChangeHandler(e , el.key , el?.massage || "" )} 
-            />
-            ))
-            }
+
+                {
+                    Input_list.map((el, i) => (
+
+                        <input
+                            type={el.key === 'price' ? 'number' : 'text'}
+                            className={!input[el.key].haveError ? "input_Eror" : ''}
+                            placeholder={el.label}
+                            key={i}
+                            onChange={e => inputChangeHandler(e, el.key, el?.massage || "")}
+                        />
+                    ))
+                }
             </div>
-                    <div className="btn_wrapper">
-                        <button className="__add" onClick={addItemToCat}>افزودن </button>
-                        <button className="__cancel" onClick={closeHandler}>انصراف</button>
-                    </div>
-            
+            <div className="btn_wrapper">
+                <button className="__add" onClick={addItemToCat}>افزودن </button>
+                <button className="__cancel" onClick={onClose}>انصراف</button>
             </div>
-    </ModalLayout>    
+
+        </div>
+    </ModalLayout>
 }
 
 export default AddItemToCategoryModal;
