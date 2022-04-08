@@ -111,107 +111,107 @@ const FactorWraper = styledComponents.div`
     
 
 
-`
-
+`;
 
 const FactorPrint = (props) => {
+  const [printActive, setprintActive] = useState(false);
+  const factorCtx = useContext(FactorContext);
+  const params = useParams();
+  const item = factorCtx.factors.filter((el) => el.shenase == params.id);
 
-    const [printActive ,setprintActive ] = useState(false)
-    const factorCtx = useContext(FactorContext)
-    const params = useParams();
-    const item = factorCtx.factors.filter(el => el.shenase == params.id)
+  const onPrintBtnClicked = () => {
+    window.print();
+  };
+  console.log(item["0"].selectedItems["0"]);
 
-    const onPrintBtnClicked = () => {
-        window.print();
-    }
-    console.log(item['0'].selectedItems['0'])
+  const products = item["0"].selectedItems.map((el, i) => (
+    <tr key={i}>
+      <th>{el.name}</th>
+      <th>{el.amount}</th>
+      <th>{el.price}</th>
+      <th>{el.type}</th>
+      <th>{el.totalPrice}</th>
+    </tr>
+  ));
+  const tatal_price = item["0"].selectedItems.reduce(
+    (acc, curr) => acc + curr.totalPrice
+  );
+  console.log(tatal_price, "total price");
 
-    const products = item['0'].selectedItems.map(el =>
-        <tr>
-            <th>{el.name}</th>
-            <th>{el.amount}</th>
-            <th>{el.price}</th>
-            <th>{el.type}</th>
-            <th>{el.totalPrice}</th>
-        </tr>
-    );
-    const tatal_price = item['0'].selectedItems.reduce((acc, curr) => acc + curr.totalPrice)
-
-    return <Container>
-        <FactorWraper>
-            <div className="main-header">
-                <p>شناسه
-                    <span>
-                        : {item['0'].shenase}
-                    </span>
-                </p>
-                <p>
-                    <span>
-                        {item['0'].customerDate?.name?.value}:
-                    </span>
-                    نام شخص  </p>
-            </div>
-            <div className="user-address-part">
-                <p>
-                    <span>
-                        {item['0'].customerDate?.addres?.value}:
-                    </span>
-                    آدرس</p>
-            </div>
-            <div className="user-numbers-part">
-                <p className="phone-number">
-                    <span>
-                        {item['0'].customerDate?.number?.value}
-                        :
-                    </span>
-                    شماره همراه</p>
-                <p>
-                    <span>
-                        {item['0'].customerDate?.phoneNumber?.value}:
-                    </span>
-                    شماره تلفن</p>
-            </div>
-            <table className="product-list-table">
-                <thead>
-                    <tr>
-                        <th>نام</th>
-                        <th>تعداد</th>
-                        <th>
-                            قیمت واحد
-                            <span>ریال</span>
-                        </th>
-                        <th>گونه</th>
-                        <th>
-                            قیمت کل
-                            <span>ریال</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        products
-                    }
-                </tbody>
-            </table>
-            <div>
-                <p></p>
-                <span>ریال مجموع</span>
-            </div>
-            <div className="print-btn">
-                <button onClick={onPrintBtnClicked} className='print'>
-                    <svg
-                        stroke="currentColor" fill="none"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        strokeLinecap="round"
-                        strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <polyline points="6 9 6 2 18 2 18 9">
-                        </polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect>
-                    </svg> پرینت فاکتور
-                </button>
-            </div>
-        </FactorWraper>
+  return (
+    <Container>
+      <FactorWraper>
+        <div className="main-header">
+          <p>
+            شناسه
+            <span>: {item["0"].shenase}</span>
+          </p>
+          <p>
+            <span>{item["0"].customerDate?.name?.value}:</span>
+            نام شخص{" "}
+          </p>
+        </div>
+        <div className="user-address-part">
+          <p>
+            <span>{item["0"].customerDate?.addres?.value}:</span>
+            آدرس
+          </p>
+        </div>
+        <div className="user-numbers-part">
+          <p className="phone-number">
+            <span>{item["0"].customerDate?.number?.value}:</span>
+            شماره همراه
+          </p>
+          <p>
+            <span>{item["0"].customerDate?.phoneNumber?.value}:</span>
+            شماره تلفن
+          </p>
+        </div>
+        <table className="product-list-table">
+          <thead>
+            <tr>
+              <th>نام</th>
+              <th>تعداد</th>
+              <th>
+                قیمت واحد
+                <span>ریال</span>
+              </th>
+              <th>گونه</th>
+              <th>
+                قیمت کل
+                <span>ریال</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>{products}</tbody>
+        </table>
+        <div>
+          <p></p>
+          <span>ریال مجموع</span>
+        </div>
+        <div className="print-btn">
+          <button onClick={onPrintBtnClicked} className="print">
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>{" "}
+            پرینت فاکتور
+          </button>
+        </div>
+      </FactorWraper>
     </Container>
-}
+  );
+};
 
-export default FactorPrint
+export default FactorPrint;

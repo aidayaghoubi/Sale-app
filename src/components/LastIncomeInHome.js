@@ -1,4 +1,4 @@
-import styledComponents from "styled-components"
+import styledComponents from "styled-components";
 
 const WrapperStyled = styledComponents.div`
 
@@ -45,42 +45,35 @@ const WrapperStyled = styledComponents.div`
             }
         }
 
-    `
-    // (acc , curr )=> acc + curr.selectedItems[0].totalPrice
+    `;
+// (acc , curr )=> acc + curr.selectedItems[0].totalPrice
 const LastIncomeHandler = ({ factors }) => {
 
-    
-    const price = factors.map(el=> el.selectedItems )
-   
-    return (
-        <WrapperStyled>
-            <p className="_title">
-                اخرین آمار دریافتی
-            </p>
-            <div className="item_wrapper">
-                <div className="dashboard_container this_week">
-                    <p className="title_in">مجموع درآمد هفته جاری</p>
-                    <label>ریال</label>
-                    <p className="income">
-                        0                        
-                    </p>
-                </div>
-                <div className="dashboard_container last_month">
-                    <p className="title_in">مجموع درآمد ماه جاری</p>
-                    <label>ریال</label>
-                    <p className="income">
-                        0                        
-                    </p>
-                </div>
-                <div className="dashboard_container last_year">
-                    <p className="title_in">مجموع درآمد سال جاری</p>
-                    <label>ریال</label>
-                    <p className="income">
-                        0                        
-                    </p>
-                </div>
-            </div>
-        </WrapperStyled>
-    )
-}
-export default LastIncomeHandler
+  const price = factors.map((el) => el.selectedItems);
+  const totalPrice = price.reduce((acc , curr) => curr += Number(acc['0'].price) * Number(acc['0'].amount) )
+  console.log(totalPrice, "price", price);
+
+  return (
+    <WrapperStyled>
+      <p className="_title">اخرین آمار دریافتی</p>
+      <div className="item_wrapper">
+        <div className="dashboard_container this_week">
+          <p className="title_in">مجموع درآمد هفته جاری</p>
+          <label>ریال</label>
+          <p className="income"></p>
+        </div>
+        <div className="dashboard_container last_month">
+          <p className="title_in">مجموع درآمد ماه جاری</p>
+          <label>ریال</label>
+          <p className="income">0</p>
+        </div>
+        <div className="dashboard_container last_year">
+          <p className="title_in">مجموع درآمد سال جاری</p>
+          <label>ریال</label>
+          <p className="income">0</p>
+        </div>
+      </div>
+    </WrapperStyled>
+  );
+};
+export default LastIncomeHandler;
