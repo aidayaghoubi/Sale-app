@@ -1,4 +1,5 @@
 import styledComponents from "styled-components";
+import { useEffect , useState } from "react";
 
 const WrapperStyled = styledComponents.div`
 
@@ -49,9 +50,12 @@ const WrapperStyled = styledComponents.div`
 // (acc , curr )=> acc + curr.selectedItems[0].totalPrice
 const LastIncomeHandler = ({ factors }) => {
 
-  const price = factors.map((el) => el.selectedItems);
-  const totalPrice = price.reduce((acc , curr) => curr += Number(acc['0'].price) * Number(acc['0'].amount) )
-  console.log(totalPrice, "price", price);
+   
+
+    const price = factors ?  factors?.map((el) => el.selectedItems) : [];
+    const totalPrice = price.reduce((acc , curr) => acc + curr[0].totalPrice , 0)
+ 
+
 
   return (
     <WrapperStyled>
@@ -60,17 +64,17 @@ const LastIncomeHandler = ({ factors }) => {
         <div className="dashboard_container this_week">
           <p className="title_in">مجموع درآمد هفته جاری</p>
           <label>ریال</label>
-          <p className="income"></p>
+          <p className="income">{totalPrice}</p>
         </div>
         <div className="dashboard_container last_month">
           <p className="title_in">مجموع درآمد ماه جاری</p>
           <label>ریال</label>
-          <p className="income">0</p>
+          <p className="income">{totalPrice}</p>
         </div>
         <div className="dashboard_container last_year">
           <p className="title_in">مجموع درآمد سال جاری</p>
           <label>ریال</label>
-          <p className="income">0</p>
+          <p className="income">{totalPrice }</p>
         </div>
       </div>
     </WrapperStyled>

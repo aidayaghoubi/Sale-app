@@ -7,6 +7,7 @@ import LastFActor from "../components/LastFactorInHome";
 import { useContext } from "react";
 import { FactorContext } from "../context/factorContext";
 import { useNavigate } from "react-router-dom";
+import Testing from "./testing";
 
 
 const Home = () => {
@@ -28,6 +29,7 @@ const Home = () => {
          <LastFActor factors={factors} />
         <LastIncomeHandler factors={factors}/>
       </ItemWraper>
+      {/* <Testing></Testing> */}
     </FactorContextProvider>
   </Container>
 }
