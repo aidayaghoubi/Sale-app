@@ -115,7 +115,7 @@ overflow: hidden;
                 width: 28px;
                 transition: all 0.5s ease-in-out;
                 left: 0;
-                height: 3px;
+                height: 2px;
                 background-color: #726DA8;
                
             }
@@ -138,6 +138,7 @@ overflow: hidden;
                 &::before{
                     transform: rotate(45deg) translate(5px, 8px );
                     transition: all 0.5s ease-in-out;
+                    height: 3px;
                 }
                 &::after{
                     width: 28px;

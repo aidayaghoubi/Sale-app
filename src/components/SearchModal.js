@@ -35,17 +35,20 @@ const SearchModal = ({ searchedItem , addingItem}) => {
     const SearchedList = ProductCTX.items.map(el => (el.product))
 
     
-
+    console.log(searchedItem)
 
     useEffect(() => {
-        const itemsss = SearchedList.map(el => {
-            return el.filter(i => {
-                if (i.name.toLowerCase().includes(searchedItem.toLowerCase())) {
-                    return i
-                }
-            })
-        });
-        setItems(itemsss);
+        if(searchedItem){
+
+            const itemsss = SearchedList.map(el => {
+                return el.filter(i => {
+                    if (i.name.toLowerCase().includes(searchedItem.toLowerCase())) {
+                        return i
+                    }
+                })
+            });
+            setItems(itemsss);
+        }
 
     }, [searchedItem])
 

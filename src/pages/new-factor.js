@@ -34,6 +34,7 @@ margin: 0 77px;
     cursor:pointer;
 
 `;
+
 const CalenderWraper = styledComponents.div`
 
     width: 34%;
@@ -46,16 +47,22 @@ const CalenderWraper = styledComponents.div`
 `
 const NewFactor = () => {
 
+    const d = new Date().toLocaleDateString('fa-IR').split("/");
+    
+   
+    const defaultValue = [{
+        year: d.slice(0,4),
+        month: d.slice(5,6),
+        day: d.slice(7,8),
+    }];
+    console.log(defaultValue[0].year ,defaultValue[0].month  )
+
     const [selectedItems, setSelectedItems] = useState([]);
     const [priority, setProierity] = useState(1);
     const [customerDate, setCustomerDate] = useState({})
     const [moreInfo, setMoreInfo] = useState('');
-    const [totalFactorPrice, settotalFactorPrice] = useState(0)
     const FactorCtx = useContext(FactorContext);
-    const [selectedDayRange, setSelectedDayRange] = useState({
-        from: null,
-        to: null
-    });
+    const [selectedDay, setSelectedDay] = useState();
 
     let navigate = useNavigate()
 
@@ -99,7 +106,6 @@ const NewFactor = () => {
         setMoreInfo('');
         navigate(`/new-factor/${shenase}`)
     }
-    console.log(selectedDayRange)
 
     return <Container>
         <FactorContextProvider>
@@ -110,8 +116,8 @@ const NewFactor = () => {
                 addItem={productThatSold} />
             <CalenderWraper>
                 <Calendar
-                    value={selectedDayRange}
-                    onChange={setSelectedDayRange}
+                    value={selectedDay}
+                    onChange={setSelectedDay}
                     shouldHighlightWeekends
                     locale="fa"
                     colorPrimary="#5e5ec3"

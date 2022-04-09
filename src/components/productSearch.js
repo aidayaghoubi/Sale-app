@@ -49,12 +49,14 @@ const ProductSearch = ({addItem}) => {
     const addItemToFac =(prop) =>{
         addItem(prop)
         setshowSearch(false);
+        setserached('');
         
     }
 
     return (
         <SearchDivStyled>
             <input
+                value={serached}
                 type="text"
                 placeholder="نام محصول را وارد کنید"
                 onChange={onInputChangeHandler}
