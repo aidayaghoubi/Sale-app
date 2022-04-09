@@ -99,7 +99,8 @@ const NewFactor = () => {
             selectedItems,
             customerDate,
             moreInfo,
-            shenase
+            shenase,
+            selectedDay
         });
         setSelectedItems([]);
         setCustomerDate({});

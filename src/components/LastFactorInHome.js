@@ -77,11 +77,14 @@ const LastFActor = ({ factors }) => {
         navigate(`/new-factor/${props}`)
     }
 
+    console.log(factors)
+
     const items = factors.map((el, i) =>
         <div className="factor" key={i}>
             <p>{el?.customerDate?.name?.value}</p>
             <p>شناسه فاکتور : {el.shenase}</p>
             <p> اولویت : {el.priority}</p>
+            
             <button onClick={()=>onShowFactor(el.shenase)}><span>مشاهده</span></button>
         </div>
     )

@@ -15,11 +15,19 @@ const FactorWraper = styledComponents.div`
             margin-top: 10px;
             & button{
                 padding: 12px 30px;
-                background-color: #673ab7;
-                border: none;
-                color: #fff;
+                background-color: #fff;
+                border: 1px solid #673ab7;
+                color: #673ab7;
+                cursor: pointer;
                 border-radius: 8px;
                 font-size: 18px;
+                transition:all 0.5s;
+                &:hover{
+                 
+                  background-color: #673ab7;
+                  border: 1px solid #fff;
+                  color: #fff;
+                }
             }
         }
 
@@ -114,7 +122,6 @@ const FactorWraper = styledComponents.div`
 `;
 
 const FactorPrint = (props) => {
-  const [printActive, setprintActive] = useState(false);
   const factorCtx = useContext(FactorContext);
   const params = useParams();
   const item = factorCtx.factors.filter((el) => el.shenase == params.id);
@@ -133,10 +140,6 @@ const FactorPrint = (props) => {
       <th>{el.totalPrice}</th>
     </tr>
   ));
-  const tatal_price = item["0"].selectedItems.reduce(
-    (acc, curr) => acc + curr.totalPrice
-  );
-  console.log(tatal_price, "total price");
 
   return (
     <Container>
@@ -189,6 +192,12 @@ const FactorPrint = (props) => {
           <p></p>
           <span>ریال مجموع</span>
         </div>
+        <p>
+          تاریخ صدور فاکتور
+          <span>{item["0"].selectedDay.day}</span>\
+          <span>{item["0"].selectedDay.month}</span>\
+          <span>{item["0"].selectedDay.year}</span>
+        </p>
         <div className="print-btn">
           <button onClick={onPrintBtnClicked} className="print">
             <svg
