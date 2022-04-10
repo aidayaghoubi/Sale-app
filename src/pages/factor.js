@@ -129,7 +129,7 @@ const FactorPrint = (props) => {
   const onPrintBtnClicked = () => {
     window.print();
   };
-  console.log(item["0"].selectedItems["0"]);
+  console.log(item["0"]?.selectedDay);
 
   const products = item["0"].selectedItems.map((el, i) => (
     <tr key={i}>

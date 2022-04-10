@@ -77,7 +77,7 @@ const LastFActor = ({ factors }) => {
         navigate(`/new-factor/${props}`)
     }
 
-    console.log(factors)
+    
 
     const items = factors.map((el, i) =>
         <div className="factor" key={i}>

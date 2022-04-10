@@ -35,7 +35,7 @@ const SearchModal = ({ searchedItem , addingItem}) => {
     const SearchedList = ProductCTX.items.map(el => (el.product))
 
     
-    console.log(searchedItem)
+    
 
     useEffect(() => {
         if(searchedItem){

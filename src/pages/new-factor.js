@@ -49,13 +49,13 @@ const NewFactor = () => {
 
     const d = new Date().toLocaleDateString('fa-IR').split("/");
     
-   
     const defaultValue = [{
         year: d.slice(0,4),
         month: d.slice(5,6),
         day: d.slice(7,8),
     }];
-    console.log(defaultValue[0].year ,defaultValue[0].month  )
+  
+   console.log(d , defaultValue)
 
     const [selectedItems, setSelectedItems] = useState([]);
     const [priority, setProierity] = useState(1);
