@@ -117,7 +117,36 @@ const FactorWraper = styledComponents.div`
         }
     }
     
+    & .price{
+      display:flex;
+      display: -ms-flexbox;
+      align-items: center;
+      justify-content: flex-end;
 
+      & p{
+        margin-right: ;
+        margin-right: 14px;
+        font-weight: bold;
+        font-size: 19px;
+        color: black;
+    
+      }
+      & span{
+        color:gray;
+      }
+    }
+
+    & .date{
+
+      & p{
+        color:gray;
+      }
+      & span{
+        color:black;
+        font-weight:bold;
+        margin: 0 4px;
+      }
+    }
 
 `;
 
@@ -129,7 +158,11 @@ const FactorPrint = (props) => {
   const onPrintBtnClicked = () => {
     window.print();
   };
-  console.log(item["0"]?.selectedDay);
+
+  const totalPrice = item[0]?.selectedItems?.reduce(
+    (acc, curr) => curr.totalPrice + acc,
+    0
+  );
 
   const products = item["0"].selectedItems.map((el, i) => (
     <tr key={i}>
@@ -146,28 +179,28 @@ const FactorPrint = (props) => {
       <FactorWraper>
         <div className="main-header">
           <p>
-            شناسه
-            <span>: {item["0"].shenase}</span>
+            شناسه:
+            <span> {item["0"].shenase} </span>
           </p>
           <p>
-            <span>{item["0"].customerDate?.name?.value}:</span>
-            نام شخص{" "}
+            <span>{item["0"].customerDate?.name?.value} </span>
+            :نام شخص{" "}
           </p>
         </div>
         <div className="user-address-part">
           <p>
-            <span>{item["0"].customerDate?.addres?.value}:</span>
-            آدرس
+            <span>{item["0"].customerDate?.addres?.value} </span>
+            :آدرس
           </p>
         </div>
         <div className="user-numbers-part">
           <p className="phone-number">
-            <span>{item["0"].customerDate?.number?.value}:</span>
-            شماره همراه
+            <span>{item["0"].customerDate?.number?.value} </span>
+            :شماره همراه
           </p>
           <p>
-            <span>{item["0"].customerDate?.phoneNumber?.value}:</span>
-            شماره تلفن
+            <span>{item["0"].customerDate?.phoneNumber?.value} </span>
+            :شماره تلفن
           </p>
         </div>
         <table className="product-list-table">
@@ -188,16 +221,18 @@ const FactorPrint = (props) => {
           </thead>
           <tbody>{products}</tbody>
         </table>
-        <div>
-          <p></p>
+        <div className="price">
+          <p>{totalPrice}</p>
           <span>ریال مجموع</span>
         </div>
-        <p>
-          تاریخ صدور فاکتور
-          <span>{item["0"].selectedDay.day}</span>\
-          <span>{item["0"].selectedDay.month}</span>\
-          <span>{item["0"].selectedDay.year}</span>
-        </p>
+        <div className="date">
+          <p>
+            تاریخ صدور فاکتور
+            <span>{item["0"].selectedDay.day}</span>\
+            <span>{item["0"].selectedDay.month}</span>\
+            <span>{item["0"].selectedDay.year}</span>
+          </p>
+        </div>
         <div className="print-btn">
           <button onClick={onPrintBtnClicked} className="print">
             <svg
