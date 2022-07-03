@@ -115,7 +115,7 @@ overflow: hidden;
                 width: 28px;
                 transition: all 0.5s ease-in-out;
                 left: 0;
-                height: 2px;
+                height: 3px;
                 background-color: #726DA8;
                
             }
