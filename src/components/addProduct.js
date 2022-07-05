@@ -5,6 +5,7 @@ display: flex;
     align-items: center;
     justify-content: flex-start;
     margin-top: 15px;
+    margin-bottom: 35px;
 
     & .__line{
         height: 2px;
@@ -23,6 +24,7 @@ display: flex;
         font-size: 18px;
         display: flex;
         align-items: center;
+        margin-bottom: 35px;
         color: #9292ff;
         border-radius: 10px;
         transition: all 0.2s;

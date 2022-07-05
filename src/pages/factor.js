@@ -164,6 +164,8 @@ const FactorPrint = (props) => {
     0
   );
 
+
+
   const products = item["0"].selectedItems.map((el, i) => (
     <tr key={i}>
       <th>{el.name}</th>

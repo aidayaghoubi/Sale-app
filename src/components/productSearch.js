@@ -16,7 +16,7 @@ flex-direction: column;
 & input{
     width: 467px;
     padding: 15px 13px;
-    margin: 15px 23px;
+    margin: 15px 12px;
     direction: rtl;
     border-radius: 7px;
     border: none;

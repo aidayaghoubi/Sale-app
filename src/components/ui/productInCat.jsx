@@ -2,15 +2,13 @@ import styledComponents from "styled-components"
 
 const ProductWrapper = styledComponents.div`
 
-padding: 20px 0;
+padding: 12px 0;
 transition: 0.2s ;
 
 &:hover{
-    background-color: #d4d4ff;
+    background-color:#e7e7fd;
 
 }
-
-
     & .inner_product_wrapper{
         display:flex;
         justify-content: space-around;
@@ -20,6 +18,7 @@ transition: 0.2s ;
 
         & p{
             font-size:16px
+            margin:0;
         }
     }
 `

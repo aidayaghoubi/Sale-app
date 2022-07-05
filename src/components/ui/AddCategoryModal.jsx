@@ -95,8 +95,7 @@ z-index:9999;
 const AddCategoryModal = ({ closeHandler, addCategory, setCatName, catName, modalHeight }) => {
 
     const [inputError, setInputError] = useState(false)
-    const [visible, setVisible] = useState(true);
-
+   
     const inputChangeHandler = ({ target: { value } }) => {
         setCatName(value);
         if (catName.trim().length < 2) {
@@ -109,7 +108,7 @@ const AddCategoryModal = ({ closeHandler, addCategory, setCatName, catName, moda
 
         if (catName.trim().length > 2) {
             addCategory();
-            setVisible(false);
+            
 
         } else {
             setInputError(true)
@@ -117,10 +116,7 @@ const AddCategoryModal = ({ closeHandler, addCategory, setCatName, catName, moda
         }
 
     }
-    const onClose = () => {
-        setVisible(false);
-        closeHandler();
-      };
+   
  
     return (
         <ModalLayout style={{ top: `${modalHeight}px` }}>

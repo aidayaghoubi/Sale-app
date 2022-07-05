@@ -3,35 +3,27 @@ import Container from "../components/Container";
 import EmptyProductState from "../components/exptyProductPage";
 import AddProduct from "../components/addProduct";
 import { useContext, useEffect, useState } from "react";
-import AddCategoryModal from '../components/ui/AddCategoryModal.jsx';
+import AddCategoryModal from "../components/ui/AddCategoryModal.jsx";
 import { ProductList } from "../context/productContect";
+import styledComponents from "styled-components";
+import 'antd/dist/antd.css';
 import { Drawer } from "antd";
-import styledComponents from 'styled-components'
-import CategoryContainer from "../components/ui/CategoryContainer"
+import CategoryContainer from "../components/ui/CategoryContainer";
 
 const ModalLayout = styledComponents.div`
 
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-transition: .3s;
-height: 100vh;
-background-color: rgba(0,0,0,0.8);
-z-index:9999;
+
 
     & .add_category_wrapper{
         width: 50%;
-        background-color: #fff;
-        max-height: 92%;
-        position: absolute;
+        margin:0 auto;
         -webkit-transition: .3s;
         transition: .3s;
         overflow-y: auto;
         bottom: 0;
         left: 25%;
         border-radius: 20px 20px 0 0;
-        height: 205px; 
+       height:280x;
 
             & ._title{
                 padding:15px 25px;
@@ -57,7 +49,7 @@ z-index:9999;
                 font-size: 15px;
             }
             & input{
-                height: 25px;
+                height:45px;
                 width: 280px;
                 padding: 8px 24px;
                 border-radius: 7px;
@@ -96,115 +88,108 @@ z-index:9999;
 }
 
 
-`
-
-
-
+`;
 
 const Product = () => {
-
-    const [modalHeight, setModalHeight] = useState(0)
-    const [inputError, setInputError] = useState(false)
-    const [visible, setVisible] = useState(true);
-    const [addClicked, setAddClicked] = useState(false);
-    const [catName, setCatName] = useState('');
-
-    const body = document.querySelector('body');
-
-    const ProductCtx = useContext(ProductList)
-
-
-    const AddModal = () => {
-        setAddClicked(true);
-        body.style.overflow = 'hidden'
-    }
-    const closeModal = () => {
-        setAddClicked(false);
-        body.style.overflow = 'auto';
-    }
-  
-
-    const addCategoryHandler = () => {
-
-        ProductCtx.addCategory(catName);
-        setCatName('');
-        closeModal();
-    }
+ 
+  const [inputError, setInputError] = useState(false);
+  const [addClicked, setAddClicked] = useState(false);
+  const [catName, setCatName] = useState("");
 
  
+  const ProductCtx = useContext(ProductList);
 
-    
-    const inputChangeHandler = ({ target: { value } }) => {
-        setCatName(value);
-        if (catName.trim().length < 2) {
-            setInputError(true)
-        } else {
-            setInputError(false)
-        }
+  const AddModal = () => {
+    setAddClicked(true);
+  };
+  const closeModal = () => {
+    setAddClicked(false);
+  };
+
+  const addCategoryHandler = () => {
+    ProductCtx.addCategory(catName);
+    setCatName("");
+    closeModal();
+  };
+
+  const inputChangeHandler = ({ target: { value } }) => {
+    setCatName(value);
+    if (catName.trim().length < 2) {
+      setInputError(true);
+    } else {
+      setInputError(false);
     }
-    const addCategoryHandlerModal = () => {
-
-        if (catName.trim().length > 2) {
-            addCategoryHandler();
-            setVisible(false);
-
-        } else {
-            setInputError(true)
-            setCatName('')
-        }
-
+  };
+  const addCategoryHandlerModal = () => {
+    if (!inputError) {
+      addCategoryHandler();
+    } else {
+      setInputError(true);
+      setCatName("");
     }
+  };
 
 
-    return <Container>
-        <Title name="محصولات" />
-        {!ProductCtx.items.length && <EmptyProductState />}
 
-        {ProductCtx.items.map((el, i) => <CategoryContainer {...el} key={i} />)}
-        <AddProduct add={AddModal} />
+  return (
+    <Container>
+      <Title name="محصولات" />
+      {!ProductCtx.items.length && <EmptyProductState />}
 
+      {ProductCtx.items.map((el, i) => (
+        <CategoryContainer {...el} key={i} />
+      ))}
 
-        <Drawer
+      <AddProduct add={AddModal} />
 
-            placement={'right'}
-            width={500}
-            // onClose={closeHandler}
-            visible={addClicked}
-            closable={false}
-
-        >
-            <ModalLayout>
-                <div className="add_cateory_p">
-                    <p className="_title">افزودن دسته بندی جدید</p>
-                    <div className="item__container">
-                        <div>
-                            <input
-                                className={inputError ? "input__error" : ''}
-                                type='text'
-                                value={catName}
-                                placeholder="نام دسته بندی"
-                                onChange={inputChangeHandler} />
-                            {inputError && <p className="error_text">نام دسته بندی باید حداقل دارای 3 حرف باشد</p>
-                            }
-                        </div>
-                        <div className="btn_wrapper">
-                            <button className="__add" onClick={addCategoryHandlerModal}>افزودن دسته بندی</button>
-                            <button className="__cancel" onClick={closeModal}>انصراف</button>
-                        </div>
-
-                    </div>
-                </div>
-            </ModalLayout>
-        </Drawer>
-
-        {/* {addClicked && <AddCategoryModal
-            catName={catName}
-            setCatName={setCatName}
-            closeHandler={closeModal}
-            addCategory={addCategoryHandler}
-            modalHeight={modalHeight}
-            addProductHandler={addProductHandler} />} */}
+      <Drawer
+        placement={"bottom"}
+        onClose={closeModal}
+        visible={addClicked}
+        closable={false}
+        height={240}
+        width={150}
+      >
+        <ModalLayout>
+          <div className="add_category_wrapper">
+            <p className="_title" style={{
+                 padding:"15px 25px",
+                 textAlign: "right",
+                 fontSize: "16px",
+                 fontWeight: "900",
+            }}>افزودن دسته بندی جدید</p>
+            <div className="item__container">
+              <div>
+                <input
+                  className={inputError ? "input__error" : ""}
+                  type="text"
+                  value={catName}
+                  placeholder="نام دسته بندی"
+                  onChange={inputChangeHandler}
+                />
+                {inputError && (
+                  <p className="error_text">
+                    نام دسته بندی باید حداقل دارای 3 حرف باشد
+                  </p>
+                )}
+              </div>
+              <div className="btn_wrapper">
+                <button className="__add" onClick={addCategoryHandlerModal}>
+                  افزودن دسته بندی
+                </button>
+                <button
+                  className="__cancel"
+                  onClick={() => setAddClicked(false)}
+                >
+                  انصراف
+                </button>
+              </div>
+            </div>
+          </div>
+        </ModalLayout>
+      </Drawer> 
 
     </Container>
-}
-export default Product
+  );
+};
+export default Product;

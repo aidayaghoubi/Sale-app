@@ -29,7 +29,6 @@ const Home = () => {
          <LastFActor factors={factors} />
         <LastIncomeHandler factors={factors}/>
       </ItemWraper>
-      {/* <Testing></Testing> */}
     </FactorContextProvider>
   </Container>
 }

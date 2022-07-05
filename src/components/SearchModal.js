@@ -4,8 +4,9 @@ import { useContext, useState, useEffect } from "react";
 import SearchedItemREsult from "./itemSearchReasult";
 
 const SearchWrapper = styledComponents.div`
-width: 476px;
-margin: -9px 29px;
+
+width: 464px;
+margin: -6px 11px;
 border-radius: 5px;
 border: 2px solid;
 border-color: #babaf7;
@@ -16,6 +17,7 @@ align-items: center;
         & p{
             color: #aba5a5;
             font-size: 17px;
+            margin-top: 6px;
         }
         & .product_wrapper{
             display: flex;

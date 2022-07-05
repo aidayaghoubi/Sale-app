@@ -1,4 +1,4 @@
-import styledComponents from "styled-components"
+import styledComponents from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const WrapperStyled = styledComponents.div`
@@ -18,10 +18,10 @@ const WrapperStyled = styledComponents.div`
             display: flex;
             justify-content: space-between;
             direction: rtl;
-            padding: 0px 16px;
+            padding: 15px 16px;
             border-right: 5px solid;
             border-color: #5d5ddb;
-            margin: 25px 0px;
+            margin: 5px 0px;
             align-items: center;
 
             & button{
@@ -29,11 +29,11 @@ const WrapperStyled = styledComponents.div`
                 color: #5d5ddb;
                 cursor: pointer;
                 border-radius: 5px;
-                background-color: transparent;
+                background-color: #fff;
                 height: 37px;
                 font-size: 16px;
                 font-weight: bold;
-                width: 68px;
+                width:86px;
                 position: relative;
                 -webkit-transition: 0.8s;
                 overflow: hidden;
@@ -41,9 +41,10 @@ const WrapperStyled = styledComponents.div`
                  & span{
                     z-index: 999;
                     position: absolute;
-                    left: 18%;
+                    left: 16%;
                     -webkit-transition: 0.8s;
-                    top: 7px;
+                    top: 4px;
+                    
                  }
 
                 &::after{
@@ -67,39 +68,63 @@ const WrapperStyled = styledComponents.div`
             }
         }
     }
-`
+`;
 
 const LastFActor = ({ factors }) => {
-    let navigate = useNavigate()
+  let navigate = useNavigate();
 
-    const onShowFactor = (props) => {
-        console.log(props);
-        navigate(`/new-factor/${props}`)
+  const onShowFactor = (props) => {
+    navigate(`/new-factor/${props}`);
+  };
+
+  const itemColor = (item) => {
+    let color = "";
+
+    switch (item) {
+      case 1:
+      return  color = "#b1f3b1";
+      case 2:
+        return  color = "#d9edf3";
+      case 3:
+        return   color = "#ffffcc";
+
+      case 4:
+        return   color = "#ffedcc";
+
+      case 5:
+        return   color = "#ffcccc";
+
+      default:
+        color = "#ffcccc";
     }
 
-    
+    return color;
+  };
 
-    const items = factors.map((el, i) =>
-        <div className="factor" key={i}>
-            <p>{el?.customerDate?.name?.value}</p>
-            <p>شناسه فاکتور : {el.shenase}</p>
-            <p> اولویت : {el.priority}</p>
-            
-            <button onClick={()=>onShowFactor(el.shenase)}><span>مشاهده</span></button>
-        </div>
-    )
+  const items = factors.map((el, i) => (
+    <div
+      className="factor"
+      key={i}
+      style={{
+        borderColor: itemColor(el.priority),
+        backgroundColor:itemColor(el.priority)
+      }}
+    >
+      <p>{el?.customerDate?.name?.value}</p>
+      <p>شناسه فاکتور : {el.shenase}</p>
+      <p> اولویت : {el.priority}</p>
 
-    return (
-        <WrapperStyled>
-            <p className="_title">
-                اخرین فاکتور
-            </p>
-            <div className="factor_container">
-                {
-                    items
-                }
-            </div>
-        </WrapperStyled>
-    )
-}
-export default LastFActor
+      <button onClick={() => onShowFactor(el.shenase)}>
+        <span>مشاهده</span>
+      </button>
+    </div>
+  ));
+
+  return (
+    <WrapperStyled>
+      <p className="_title">اخرین فاکتور</p>
+      <div className="factor_container">{items}</div>
+    </WrapperStyled>
+  );
+};
+export default LastFActor;
