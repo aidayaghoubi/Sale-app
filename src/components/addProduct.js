@@ -21,20 +21,27 @@ display: flex;
         padding: 9px 16px;
         background-color: transparent;
         font-size: 18px;
-       
         display: flex;
-    align-items: center;
+        align-items: center;
         color: #9292ff;
         border-radius: 10px;
         transition: all 0.2s;
+        border: 0px solid #ffffff;
+        color: #fff;
+        background-color: #6d6de8;
+        font-size: 17px;
+        box-shadow: 1px 1px 16px -2px #2b2b9c;
+
         & svg path{
             transition: all 0.2s;
-          }
+            stroke:#fff;
+            margin-right: 4px;
+        }
       &:hover{
           & svg path{
             stroke:#fff
           }
-        background-color: #9292ff;
+          box-shadow: none;
         color: #fff
       }
     }
